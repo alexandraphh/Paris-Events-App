@@ -14,8 +14,9 @@ class List extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&lang=fr')
+    axios.get('https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&facet=category&facet=tags&facet=address_name&facet=address_zipcode&facet=address_city&facet=pmr&facet=blind&facet=deaf&facet=access_type&facet=price_type')
       .then((res) => {
+        console.log(res.data.records);
         this.setState({ events: res.data.records });
       });
   }
@@ -26,15 +27,16 @@ class List extends React.Component {
       <Row>
         <Col>
           <h2 className="text-center text-uppercase font-weight-bold m-3">Liste des évènements</h2>
-        </Col>
-        <div>
           {events.map((event) => (
-            <div key={event.fields.id}>
+            <h3 className="text-center m-5" key={event.fields.id}>
               {event.fields.title}
-              <img src={event.fields.cover_url} alt="" />
-            </div>
+              :
+              {event.fields.price_type}
+              <img className="img-thumbnail m-4" src={event.fields.cover_url} alt="event" width="100%" />
+              {event.fields.contact_facebook}
+            </h3>
           ))}
-        </div>
+        </Col>
       </Row>
     );
   }
