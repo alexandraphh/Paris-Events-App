@@ -11,6 +11,7 @@ class List extends React.Component {
     this.state = {
       events: [],
     };
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount() {
@@ -28,13 +29,23 @@ class List extends React.Component {
         <Col>
           <h2 className="text-center text-uppercase font-weight-bold m-3">Liste des évènements</h2>
           {events.map((event) => (
-            <h3 className="text-center m-5" key={event.fields.id}>
-              {event.fields.title}
-              :
+            <div className="text-center m-5" key={event.fields.id}>
+              <h3 className="text-uppercase">{event.fields.title}</h3>
               {event.fields.price_type}
               <img className="img-thumbnail m-4" src={event.fields.cover_url} alt="event" width="100%" />
-              {event.fields.contact_facebook}
-            </h3>
+              <p className="font-weight-bold">{event.fields.lead_text}</p>
+              <p>
+                {event.fields.address_city}
+                ,
+                {event.fields.address_zipcode}
+              </p>
+              <p className="text-uppercase">
+                POUR EN SAVOIR PLUS
+                :
+                {event.fields.contact_url}
+              </p>
+              <p className="font-italic">{event.fields.category}</p>
+            </div>
           ))}
         </Col>
       </Row>
