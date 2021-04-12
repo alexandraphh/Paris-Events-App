@@ -17,6 +17,7 @@ class NavBar extends React.Component {
   }
 
   render() {
+    const { valueCallback } = this.props;
     return (
       <Row>
         <Col>
@@ -33,7 +34,15 @@ class NavBar extends React.Component {
               <Nav.Link href="#">Spectacles</Nav.Link>
             </Nav>
             <Form inline>
-              <FormControl type="text" placeholder="Recherchez un évènement" className="mr-sm-2" />
+              <FormControl
+                type="text"
+                placeholder="Recherchez un évènement"
+                className="mr-sm-2"
+                onChange={(e) => {
+                  e.preventDefault();
+                  valueCallback(e.target.value);
+                }}
+              />
               <Button variant="secondary">Rechercher</Button>
             </Form>
           </Navbar>

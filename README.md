@@ -9,7 +9,7 @@ You can find down below the list of the App's components.
 1. A NavBar composed by : 
 	* The logo and the name of the app : PARIS EVENTS
 	* The links to differents types of events 
-	* The search bar 
+	* The search bar of events : you can find your event by searching it with it title.
 
 2. A Header section composed by :
 	* A title 
